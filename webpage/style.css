@@ -5,7 +5,7 @@ body {
 
 .file-upload {
   margin: 0 auto;
-  padding: 13% 0;
+  padding: 13%;
   border-radius: 10px;
   border: solid 1.5px #f6f7fa;
   background-color: #f6f7fa;
@@ -25,6 +25,7 @@ body {
 }
 
 .file-upload-content {
+  padding: 10%;
   display: none;
   text-align: center;
 }
@@ -35,19 +36,20 @@ body {
   position: relative;
   object-fit: contain;
   border-radius: 10px;
-  border: dashed 1.5px #35465d;
+  border: dashed 1.5px #d8e431;
   background-color: #ffffff;
 }
 
 .image-dropping,
 .image-upload-wrap:hover {
-  background-color: #35465d;
+  background-color: #d8e431;
   border: 1.5px dashed #ffffff;
 }
 
 .image-title-wrap {
-  padding: 0 15px 15px 15px;
-  color: #222;
+  margin: auto;
+  width: 50%;
+  background-color:  #f6f7fa;
 }
 
 .drag-text {
@@ -65,29 +67,28 @@ body {
 }
 
 .file-upload-image {
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 60%;
+  max-width: 60%;
   margin: auto;
-  padding: 20px;
+  padding: 0px;
 }
 
 .remove-image {
-  width: 200px;
-  margin: 0;
   color: #fff;
   background: #cd4535;
-  border: none;
-  padding: 10px;
-  border-radius: 4px;
-  border-bottom: 4px solid #b02818;
+  border-radius: 40px;
+  border:solid #35465d;
   transition: all .2s ease;
-  outline: none;
   text-transform: uppercase;
-  font-weight: 700;
+  width: 100%;
+  background-color: #35465d;
 }
+
 
 .remove-image:hover {
   background: #c13b2a;
+  border-color: #c13b2a;
+  border: solid  #c13b2a;
   color: #ffffff;
   transition: all .2s ease;
   cursor: pointer;
@@ -176,4 +177,177 @@ body {
   outline: none;
   opacity: 0;
   cursor: pointer;
+}
+
+.강아지-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(226, 19, 19, 0.2);
+}
+.강아지-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(226, 19, 19, 1);
+}
+
+
+.고양이-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(235, 104, 17, 0.2);
+}
+
+.고양이-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(235, 104, 17, 1);
+}
+
+.쥐-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(206, 203, 24, 0.2);
+}
+
+.쥐-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(206, 203, 24, 1);
+}
+
+.호랑이-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(47, 199, 16, 0.2);
+}
+
+.호랑이-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(47, 199, 16, 1);
+}
+
+.공룡-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(19, 205, 230, 0.2);
+}
+
+.공룡-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(19, 205, 230, 1);
+}
+
+.원숭이-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(23, 20, 218, 0.2);
+}
+
+.원숭이-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(23, 20, 218, 0.2);
+}
+
+.곰-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(77, 17, 156, 0.2);
+}
+
+.곰-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(77, 17, 156, 1);
+}
+
+.돼지-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(212, 220, 226, 0.2);
+}
+
+.돼지-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(212, 220, 226, 1);
+}
+
+.animal-label {
+  font-family: NanumSquareEB;
+  width: 20%;
+  text-align: left;
+  height: 2rem;
+}
+
+.bar-container {
+  height: 3rem;
+}
+
+.contact-me {
+  background-color: #35465d;
+}
+
+.percent-text {
+  font-family: NanumSquareEB;
+  font-size: 1rem;
+  color: #ffffff;
 }
