@@ -49,10 +49,6 @@
     </div>
 </section>
 
-<div>Teachable Machine Image Model</div>
-<button type="button" onclick="init()">Start</button>
-<button type="button" onclick="predict()">predict</button>
-
 <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <div class="container file-upload">
 
@@ -65,15 +61,44 @@
     </div>
     <div class="file-upload-content">
         <img class="file-upload-image" id="face-image" src="#" alt="your image"/>
+        <p class="result-message mt-4 "></p>
+        <div id="label-container" class="d-flex flex-column justify-content-around"></div>
         <div class="image-title-wrap">
             <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span>
             </button>
         </div>
     </div>
+    <div class="progress mt-5 ">
+        <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 100%;" aria-valuenow="25" aria-valuemin="0"
+             aria-valuemax="100">25%
+        </div>
+    </div>
 </div>
 
-<div id="webcam-container"></div>
-<div id="label-container"></div>
+
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://taxijjang.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+
+
+</script>
+
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+    Disqus.</a></noscript>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
@@ -87,24 +112,28 @@
 <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
 <script>
     function readURL(input) {
-  if (input.files && input.files[0]) {
+        if (input.files && input.files[0]) {
 
-    var reader = new FileReader();
+            var reader = new FileReader();
 
-    reader.onload = function(e) {
-      $('.image-upload-wrap').hide();
+            reader.onload = function(e) {
+              $('.image-upload-wrap').hide();
 
-      $('.file-upload-image').attr('src', e.target.result);
-      $('.file-upload-content').show();
+              $('.file-upload-image').attr('src', e.target.result);
+              $('.file-upload-content').show();
 
-      $('.image-title').html(input.files[0].name);
-    };
+              $('.image-title').html(input.files[0].name);
+            };
 
-    reader.readAsDataURL(input.files[0]);
+            reader.readAsDataURL(input.files[0]);
+            init().then(()=>{
+                console.log("hello");
+                predict();
+            });
 
-  } else {
-    removeUpload();
-  }
+        } else {
+            removeUpload();
+        }
 }
 
 function removeUpload() {
@@ -120,11 +149,6 @@ $('.image-upload-wrap').bind('dragover', function () {
 });
 
 
-
-
-
-
-
 </script>
 <script type="text/javascript">
         // More API functions here:
@@ -133,7 +157,7 @@ $('.image-upload-wrap').bind('dragover', function () {
         // the link to your model provided by Teachable Machine export panel
         const URL = "https://teachablemachine.withgoogle.com/models/fWh_fcN-A/";
 
-        let model, webcam, labelContainer, maxPredictions;
+        let model, webcam, labelContainer, maxPredictions, labelResult;
 
         // Load the image model and setup the webcam
         async function init() {
@@ -159,18 +183,120 @@ $('.image-upload-wrap').bind('dragover', function () {
             // predict can take in an image, video or canvas html element
             var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
+            prediction.sort((a,b) => parseFloat(b.probability) - parseFloat(a.probability));
+
+            var resultTitle, resultExplain, resultCeleb;
+            switch(prediction[0].className){
+                case "강아지":
+                    resultTitle = "강아지상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+                case "원숭이":
+                    resultTitle = "원숭이상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+                case "쥐":
+                    resultTitle = "쥐상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+                case "고양이":
+                    resultTitle = "고양이상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+                case "호랑이":
+                    resultTitle = "호랑이상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+                case "공룡":
+                    resultTitle = "공룡상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+                case "곰":
+                    resultTitle = "곰상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+                case "돼지":
+                    resultTitle = "돼지상"
+                    resultExplain = "테스트 Explain"
+                    resultCeleb = "테스트 Celeb"
+                    break;
+            }
+
+            console.log("START")
+
+            var title = "<div class='"+prediction[0].className + "-animal-title'>" + resultTitle + "</div>"
+            console.log(title)
+
+            var explain = "<div class='animal-explain pt-2'>" + resultExplain + "</div>"
+            console.log(explain)
+
+            var celeb = "<div class='"+prediction[0].className + "-animal-celeb pt-2 pb-2'>" + resultCeleb + "</div>"
+            console.log(celeb)
+
+            $('.result-message').html(title + explain + celeb);
+
+            var barWidth;
+
+            console.log(maxPredictions)
             for (let i = 0; i < maxPredictions; i++) {
+                if (prediction[i].probability.toFixed(2) > 0.1){
+                    barWidth = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
+                }
+                else if (prediction[i].probability.toFixed(2) >= 0.01){
+                    barWidth = "4%"
+                }
+                else {
+                    barWidth = "2%"
+                }
+                console.log(i)
+                console.log(barWidth);
+
+                var labelTitle;
+                switch (prediction[i].className){
+                case "강아지":
+                    labelTitle = "강아지상"
+                    break;
+                case "원숭이":
+                    labelTitle = "원숭이상"
+                    break;
+                case "쥐":
+                    labelTitle = "쥐상"
+                    break;
+                case "고양이":
+                    labelTitle = "고양이상"
+                    break;
+                case "호랑이":
+                    labelTitle = "호랑이상"
+                    break;
+                case "공룡":
+                    labelTitle = "공룡상"
+                    break;
+                case "곰":
+                    labelTitle = "곰상"
+                    break;
+                case "돼지":
+                    labelTitle = "돼지상"
+                    break;
+            }
+
+            var label = "<div class='animal-label d-flex align-items-center'>" + labelTitle + "</div>"
+            var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " + prediction[i].className + "-bar' style='width:" + barWidth + "'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) * 100) + "%</span></div></div>"
+
+            labelContainer.childNodes[i].innerHTML = label + bar;
+
+            console.log(bar)
                 const classPrediction =
                     prediction[i].className + ": " + prediction[i].probability.toFixed(2);
                 labelContainer.childNodes[i].innerHTML = classPrediction;
             }
         }
-
-
-
-
-
-
 
 
 </script>
