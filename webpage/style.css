@@ -78,6 +78,8 @@ body {
   background: #cd4535;
   border-radius: 40px;
   border:solid #35465d;
+  padding-top: 5%;
+  padding-bottom: 5%;
   transition: all .2s ease;
   text-transform: uppercase;
   width: 100%;
@@ -350,4 +352,8 @@ body {
   font-family: NanumSquareEB;
   font-size: 1rem;
   color: #ffffff;
+}
+
+.addthis_inline_share_toolbox_0k1j{
+    margin: 5%;
 }
